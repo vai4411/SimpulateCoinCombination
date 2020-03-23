@@ -1,4 +1,4 @@
-
+#
 #!/bin/bash -x
 
 #Use case 1
@@ -11,22 +11,25 @@ else
 fi
 
 #Use case 2
-read -p "Enter number of flips:" n
-coin[head]=0
-coin[tail]=0
-for ((i=0; i<$n; i++))
+read -p "ENTER NO OF Flip:" flip
+declare -A dic
+dic[H]=0
+dic[T]=0
+for ((i=0;i<$flip;i++))
 do
 	r=$((RANDOM % 2))
-	if [ $r -eq 1 ]
+	if [ $r -eq 0 ]
 	then
-		head=$(($head + 1))
-		coin[head]=$head
+		val=${dic[H]}
+		dic[H]=$((val+1))
 	else
-		tail=$(($tail + 1))
-		coin[tail]=$tail
+		val=${dic[T]}
+		dic[T]=$((val+1))
 	fi
 done
-headperc=`(echo 'scale=2;'${coin[head]}' / '$n' * 100' | bc)`
-echo "Percentage of head $headperc"
-tailperc=`(echo 'scale=2;'${coin[tail]}' / '$n' * 100' | bc)`
-echo "Percentage of head $tailperc"
+val=${dic[H]}
+echo "Percent of heads is :" 
+echo "scale=2;$val/$flip*100"|bc 
+val=${dic[T]}
+echo "Percent of tails is :" 
+echo "scale=2;$val/$flip*100"|bc
