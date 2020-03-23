@@ -165,3 +165,34 @@ echo "Percent of HHH is :"
 val=${dic[HHH]}
 dic[HHH]=`echo "scale=2;$val/$flip*100"|bc`
 echo ${dic[HHH]}
+
+#Use case 5
+bubble () {
+	k=0
+	for i in $@
+	do
+		arr[$k]=`echo $i | awk -F. '{print $1}'`
+		k=$((k+1))
+	done
+	for ((i=0 ; i<$len ; i++))
+	do
+		for ((j=0 ; j<$len-i-1 ; j++))
+		do
+			if ((${arr[j]} > ${arr[$((j+1))]} ))
+			then
+				temp=${arr[j]}
+				arr[$j]=${arr[$((j+1))]}
+				arr[$((j+1))]=$temp
+			fi
+		done
+	done
+	echo "Sorted Values are : "${arr[@]}
+	max=${arr[$((len-1))]}
+	for i in ${!dic[@]}
+	do
+		dicValue=`echo ${dic[$i]} | awk -F. '{print $1}'`
+		[ $dicValue -eq ${arr[$((len-1))]} ] && echo "Winning Pair is :" $i || continue
+	done
+}
+len=${#dic[@]}
+bubble ${dic[@]}
