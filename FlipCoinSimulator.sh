@@ -1,9 +1,9 @@
-#
+
 #!/bin/bash -x
 
 #Use case 1
-r=$((RANDOM % 2))
-if [ $r -eq 1 ]
+COIN_SIDE=$((RANDOM % 2))
+if [ $COIN_SIDE -eq 1 ]
 then
         echo "Head wins"
 else
@@ -11,188 +11,188 @@ else
 fi
 
 #Use case 2
-read -p "ENTER NO OF Flip:" flip
-declare -A dic
-dic[H]=0
-dic[T]=0
-for ((i=0;i<$flip;i++))
+read -p "ENTER NO OF Flip:" FLIP
+declare -A DIC
+DIC[H]=0
+DIC[T]=0
+for ((TURN=0;TURN<$FLIP;TURN++))
 do
-	r=$((RANDOM % 2))
-	if [ $r -eq 0 ]
+	COIN_SIDE=$((RANDOM % 2))
+	if [ $COIN_SIDE -eq 0 ]
 	then
-		val=${dic[H]}
-		dic[H]=$((val+1))
+		VAL=${DIC[H]}
+		DIC[H]=$((VAL+1))
 	else
-		val=${dic[T]}
-		dic[T]=$((val+1))
+		VAL=${DIC[T]}
+		DIC[T]=$((VAL+1))
 	fi
 done
-val=${dic[H]}
+VAL=${DIC[H]}
 echo "Percent of heads is :" 
-echo "scale=2;$val/$flip*100"|bc 
-val=${dic[T]}
+echo "scale=2;$VAL/$FLIP*100"|bc 
+VAL=${DIC[T]}
 echo "Percent of tails is :" 
-echo "scale=2;$val/$flip*100"|bc
+echo "scale=2;$VAL/$FLIP*100"|bc
 
 #Use case 3
-dic[HH]=0
-dic[TT]=0
-dic[TH]=0
-dic[HT]=0
+DIC[HH]=0
+DIC[TT]=0
+DIC[TH]=0
+DIC[HT]=0
 
-for ((i=0;i<$flip;i++))
+for ((TURN=0; TURN<$FLIP; TURN++))
 do
-	r=$((RANDOM%4))
-	if [ $r -eq 0 ]
+	COIN_SIDE=$((RANDOM%4))
+	if [ $COIN_SIDE -eq 0 ]
 	then
-		val=${dic[HH]}
-		dic[HH]=$((val+1))
-	elif [ $r -eq 1 ]
+		VAL=${DIC[HH]}
+		DIC[HH]=$((VAL+1))
+	elif [ $COIN_SIDE -eq 1 ]
 	then
-		val=${dic[TT]}
-		dic[TT]=$((val+1))
-	elif [ $r -eq 2 ]
+		VAL=${DIC[TT]}
+		DIC[TT]=$((VAL+1))
+	elif [ $COIN_SIDE -eq 2 ]
 	then
-		val=${dic[HT]}
-		dic[HT]=$((val+1))
+		VAL=${DIC[HT]}
+		DIC[HT]=$((VAL+1))
 	else
-		val=${dic[TH]}
-		dic[TH]=$((val+1))
+		VAL=${DIC[TH]}
+		DIC[TH]=$((VAL+1))
 	fi
 done
 
 echo "Percent of HH is :"
-val=${dic[HH]}
-dic[HH]=`echo "scale=2;$val/$flip*100"|bc`
-echo ${dic[HH]}
+VAL=${DIC[HH]}
+dic[HH]=`echo "scale=2;$VAL/$FLIP*100"|bc`
+echo ${DIC[HH]}
 echo "Percent of TT is :"
-val=${dic[TT]}
-dic[TT]=`echo "scale=2;$val/$flip*100"|bc`
-echo ${dic[TT]}
+VAL=${DIC[TT]}
+DIC[TT]=`echo "scale=2;$VAL/$FLIP*100"|bc`
+echo ${DIC[TT]}
 echo "Percent of HT is :"
-val=${dic[HT]}
-dic[HT]=`echo "scale=2;$val/$flip*100"|bc`
-echo ${dic[HT]}
+VAL=${DIC[HT]}
+DIC[HT]=`echo "scale=2;$VAL/$FLIP*100"|bc`
+echo ${DIC[HT]}
 echo "Percent of TH is :"
-val=${dic[TH]}
-dic[TH]=`echo "scale=2;$val/$flip*100"|bc`
-echo ${dic[TH]}
+VAL=${DIC[TH]}
+DIC[TH]=`echo "scale=2;$VAL/$FLIP*100"|bc`
+echo ${DIC[TH]}
 
 #Use case 4
-dic[TTT]=0
-dic[TTH]=0
-dic[THT]=0
-dic[HTT]=0
-dic[HTH]=0
-dic[HHT]=0
-dic[THH]=0
-dic[HHH]=0
+DIC[TTT]=0
+DIC[TTH]=0
+DIC[THT]=0
+DIC[HTT]=0
+DIC[HTH]=0
+DIC[HHT]=0
+DIC[THH]=0
+DIC[HHH]=0
 
-for ((i=0;i<$flip;i++))
+for ((TURN=0; TURN<$FLIP ;TURN++))
 do
-	r=$((RANDOM%8))
-	if [ $r -eq 0 ]
+	COIN_SIDE=$((RANDOM%8))
+	if [ $COIN_SIDE -eq 0 ]
 	then
-		val=${dic[TTT]}
-		dic[TTT]=$((val+1))
-	elif [ $r -eq 1 ]
+		VAL=${DIC[TTT]}
+		DIC[TTT]=$((VAL+1))
+	elif [ $COIN_SIDE -eq 1 ]
 	then
-		val=${dic[TTH]}
-		dic[TTH]=$((val+1))
-	elif [ $r -eq 2 ]
+		VAL=${DIC[TTH]}
+		DIC[TTH]=$((VAL+1))
+	elif [ $COIN_SIDE -eq 2 ]
 	then
-		val=${dic[THT]}
-		dic[THT]=$((val+1))
-	elif [ $r -eq 3 ]
+		VAL=${DIC[THT]}
+		DIC[THT]=$((VAL+1))
+	elif [ $COIN_SIDE -eq 3 ]
 	then
-		val=${dic[HTT]}
-		dic[HTT]=$((val+1))
-	elif [ $r -eq 4 ]
+		VAL=${DIC[HTT]}
+		DIC[HTT]=$((VAL+1))
+	elif [ $COIN_SIDE -eq 4 ]
 	then
-		val=${dic[HHT]}
-		dic[HHT]=$((val+1))
-	elif [ $r -eq 5 ]
+		VAL=${DIC[HHT]}
+		DIC[HHT]=$((VAL+1))
+	elif [ $COIN_SIDE -eq 5 ]
 	then
-		val=${dic[HTH]}
-		dic[HTH]=$((val+1))
-	elif [ $r -eq 6 ]
+		VAL=${DIC[HTH]}
+		DIC[HTH]=$((VAL+1))
+	elif [ $COIN_SIDE -eq 6 ]
 	then
-		val=${dic[THH]}
-		dic[THH]=$((val+1))
+		VAL=${DIC[THH]}
+		DIC[THH]=$((VAL+1))
 	else
-		val=${dic[HHH]}
-		dic[HHH]=$((val+1))
+		VAL=${DIC[HHH]}
+		DIC[HHH]=$((VAL+1))
 	fi
 done
 
 
 echo "Percent of TTT is :"
-val=${dic[TTT]}
-dic[TTT]=`echo "scale=2;$val/$flip*100"|bc`
-echo ${dic[TTT]}
+VAL=${DIC[TTT]}
+DIC[TTT]=`echo "scale=2;$VAL/$FLIP*100"|bc`
+echo ${DIC[TTT]}
 
 echo "Percent of TTH is :"
-val=${dic[TTH]}
-dic[TTH]=`echo "scale=2;$val/$flip*100"|bc`
-echo ${dic[TTH]}
+VAL=${DIC[TTH]}
+DIC[TTH]=`echo "scale=2;$VAL/$FLIP*100"|bc`
+echo ${DIC[TTH]}
 
 echo "Percent of THT is :"
-val=${dic[THT]}
-dic[THT]=`echo "scale=2;$val/$flip*100"|bc`
-echo ${dic[THT]}
+VAL=${DIC[THT]}
+DIC[THT]=`echo "scale=2;$VAL/$FLIP*100"|bc`
+echo ${DIC[THT]}
 
 echo "Percent of HTT is :"
-val=${dic[HTT]}
-dic[HTT]=`echo "scale=2;$val/$flip*100"|bc`
-echo ${dic[HTT]}
+VAL=${DIC[HTT]}
+DIC[HTT]=`echo "scale=2;$VAL/$FLIP*100"|bc`
+echo ${DIC[HTT]}
 
 echo "Percent of HTH is :"
-val=${dic[HTH]}
-dic[HTH]=`echo "scale=2;$val/$flip*100"|bc`
-echo ${dic[HTH]}
+VAL=${DIC[HTH]}
+DIC[HTH]=`echo "scale=2;$VAL/$FLIP*100"|bc`
+echo ${DIC[HTH]}
 
 echo "Percent of HHT is :"
-val=${dic[HHT]}
-dic[TTT]=`echo "scale=2;$val/$flip*100"|bc`
-echo ${dic[HHT]}
+VAL=${DIC[HHT]}
+DIC[TTT]=`echo "scale=2;$VAL/$FLIP*100"|bc`
+echo ${DIC[HHT]}
 
 echo "Percent of THH is :"
-val=${dic[THH]}
-dic[THH]=`echo "scale=2;$val/$flip*100"|bc`
-echo ${dic[THH]}
+VAL=${DIC[THH]}
+DIC[THH]=`echo "scale=2;$VAL/$FLIP*100"|bc`
+echo ${DIC[THH]}
 
 echo "Percent of HHH is :"
-val=${dic[HHH]}
-dic[HHH]=`echo "scale=2;$val/$flip*100"|bc`
-echo ${dic[HHH]}
+VAL=${DIC[HHH]}
+DIC[HHH]=`echo "scale=2;$VAL/$FLIP*100"|bc`
+echo ${DIC[HHH]}
 
 #Use case 5
-bubble () {
-	k=0
-	for i in $@
+Bubble () {
+	ENTRY=0
+	for ELEMENT in $@
 	do
-		arr[$k]=`echo $i | awk -F. '{print $1}'`
-		k=$((k+1))
+		ARR[$ENTRY]=`echo $ELEMENT | awk -F. '{print $1}'`
+		ENTRY=$((ENTRY+1))
 	done
-	for ((i=0 ; i<$len ; i++))
+	for ((ENTRY=0 ; ENTRY<$LENGTH ; ENTRY++))
 	do
-		for ((j=0 ; j<$len-i-1 ; j++))
+		for ((ELEMENT=0 ; ELEMENT<$LENGTH-ENTRY-1 ; ELEMENT++))
 		do
-			if ((${arr[j]} > ${arr[$((j+1))]} ))
+			if ((${ARR[ELEMENT]} > ${ARR[$((ELEMENT+1))]} ))
 			then
-				temp=${arr[j]}
-				arr[$j]=${arr[$((j+1))]}
-				arr[$((j+1))]=$temp
+				TEMP=${ARR[j]}
+				ARR[$ELEMENT]=${ARR[$((ELEMENT+1))]}
+				ARR[$((ELEMENT+1))]=$TEMP
 			fi
 		done
 	done
-	echo "Sorted Values are : "${arr[@]}
-	max=${arr[$((len-1))]}
-	for i in ${!dic[@]}
+	echo "Sorted Values are : "${ARR[@]}
+	MAX=${ARR[$((LENGTH-1))]}
+	for ELEMENT in ${!DIC[@]}
 	do
-		dicValue=`echo ${dic[$i]} | awk -F. '{print $1}'`
-		[ $dicValue -eq ${arr[$((len-1))]} ] && echo "Winning Pair is :" $i || continue
+		DIC_VALUE=`echo ${DIC[$ELEMENT]} | awk -F. '{print $1}'`
+		[ $DIC_VALUE -eq ${ARR[$((LENGTH-1))]} ] && echo "Winning Pair is :" $ELEMENT || continue
 	done
 }
-len=${#dic[@]}
-bubble ${dic[@]}
+LENGTH=${#DIC[@]}
+Bubble ${DIC[@]}
